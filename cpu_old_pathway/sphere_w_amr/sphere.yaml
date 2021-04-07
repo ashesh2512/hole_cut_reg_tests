@@ -1,0 +1,54 @@
+write_outputs: false
+dump_timers: false
+dump_tioga_partitions: false
+verbose: false
+
+nalu_wind:
+  # Input exodus database
+  input_mesh: sphere.exo
+
+  # Name of the output exodus database (if desired)
+  output_mesh: overset/sphere.e
+
+  # STK mesh decomposition type for parallel runs
+  decomposition_method: rcb
+
+  # Overset mesh information
+  overset_info:
+    mesh_group:
+      - overset_name: interior
+        mesh_parts: [ sphere-HEX ]
+        wall_parts: [ wall ]
+        ovset_parts: [ overset ]
+
+amr_wind:
+  amr:
+    n_cell: [64, 64, 64]
+    max_grid_size: 32
+    max_level: 2
+    v: 0
+
+  geometry:
+    prob_lo: [-1.5, -1.5, -1.5]
+    prob_hi: [1.5, 1.5, 1.5]
+    is_periodic: [1, 1, 1]
+
+  field:
+    num_ghost: 2
+    num_cell_vars: 2
+    num_node_vars: 2
+
+  refinement:
+    - type: static
+      num_levels: 2
+      level_0:
+        - lo: [-1.2, -1.2, -1.2]
+          hi: [1.2, 1.2, 1.2]
+      level_1:
+        - lo: [-0.8, -0.8, -0.8]
+          hi: [0.8, 0.8, 0.8]
+
+amrex:
+  verbose: 0
+  signal_handling: 0
+  throw_exception: 1

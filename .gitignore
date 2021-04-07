@@ -1,0 +1,12 @@
+*~*
+core.*
+*.dat
+.DS_Store
+*.exo
+*.m
+*.out
+overset
+plt*
+*.pw
+rst*
+*.swp

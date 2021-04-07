@@ -1,0 +1,72 @@
+write_outputs: true
+output_frequency: 1
+dump_timers: false
+dump_tioga_partitions: false
+verbose: false
+
+nalu_wind:
+  # Input exodus database
+  input_mesh: nrel5mw_overset.exo
+
+  # Name of the output exodus database (if desired)
+  output_mesh: overset/nrel5mw_overset.e
+
+  # STK mesh decomposition type for parallel runs
+  decomposition_method: rcb
+
+  # Overset mesh information
+  overset_info:
+    use_ngp_interface: true
+    mesh_group:
+      - overset_name: NearBody
+        mesh_parts:
+          - nearbody-HEX
+          - nearbody-WEDGE
+          - nearbody-TETRA
+          - nearbody-PYRAMID
+        wall_parts: [ blade1, blade2, blade3, hub]
+        ovset_parts: [ outerbcinnerblock ]
+
+  # Mesh motion
+  motion_info:
+    start_time: 0.0
+    num_time_steps: 2
+    delta_t: 0.036405999708752
+
+    motion_group:
+      - type: rotation
+        mesh_parts: [nearbody-HEX, nearbody-WEDGE, nearbody-TETRA, nearbody-PYRAMID ]
+        omega: 0.95881407787560491
+        axis: [ 0.99619469809174555, 0.0, -0.087155742747658166 ]
+        origin: [0.0, 0.0, 0.0]
+
+amr_wind:
+  amr:
+    n_cell: [160, 120, 120]
+    max_level: 2
+    v: 0
+
+  geometry:
+    prob_lo: [-150, -150, -150]
+    prob_hi: [200,  150,  150]
+    is_periodic: [1, 1, 1]
+
+  field:
+    num_ghost: 2
+    num_cell_vars: 2
+    num_node_vars: 2
+
+  refinement:
+    - type: static
+      num_levels: 2
+      level_0:
+        - lo: [-100, -100, -100]
+          hi: [160, 100, 100]
+      level_1:
+        - lo: [-60, -60, -60]
+          hi: [100, 60, 60]
+
+amrex:
+  verbose: 0
+  signal_handling: 0
+  throw_exception: 1
