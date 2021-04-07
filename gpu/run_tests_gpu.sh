@@ -4,12 +4,12 @@ echo "RUNNING CTV test with 2 CELL VAR AND 1 NODE VAR ON 1 CORE."
 echo ""
 cd /scratch/asharma/amr_reg_test/gpu/ctv
 rm -rf core* plt*
-srun -n 1 -c 1 --cpu_bind=cores --gres=gpu:1 ~/exawind/source/tioga_utils/build_cuda_opt/exatioga --kokkos-num-devices=1 -i ctv_amr_constant.yaml
+srun -n 1 -c 1 --cpu_bind=cores --gres=gpu:1 ~/exawind/source/tioga_utils/build_cuda_opt/exatioga --kokkos-num-devices=1 -i ctv_2cell_1node_constant.yaml
 
 echo ""
 echo "RUNNING CTV test with 1 CELL VAR AND 2 NODE VAR ON 1 CORE."
 echo ""
-srun -n 1 -c 1 --cpu_bind=cores --gres=gpu:1 ~/exawind/source/tioga_utils/build_cuda_opt/exatioga --kokkos-num-devices=1 -i ctv_stk_constant.yaml
+srun -n 1 -c 1 --cpu_bind=cores --gres=gpu:1 ~/exawind/source/tioga_utils/build_cuda_opt/exatioga --kokkos-num-devices=1 -i ctv_1cell_2node_constant.yaml
 
 echo ""
 echo "RUNNING SINGLE SPHERE TEST ON 1 CORE."
