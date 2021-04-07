@@ -1,4 +1,4 @@
-write_outputs: false
+write_outputs: true
 output_frequency: 1
 dump_timers: false
 dump_tioga_partitions: false
@@ -6,7 +6,7 @@ verbose: false
 
 nalu_wind:
   # Input exodus database
-  input_mesh: ctv_rotated.exo
+  input_mesh: ../../meshes/ctv_rotated.exo
 
   # Name of the output exodus database (if desired)
   output_mesh: overset/ctv_rotated.e
@@ -16,6 +16,7 @@ nalu_wind:
 
   # Overset mesh information
   overset_info:
+    use_ngp_interface: true
     mesh_group:
       - overset_name: interior
         mesh_parts:

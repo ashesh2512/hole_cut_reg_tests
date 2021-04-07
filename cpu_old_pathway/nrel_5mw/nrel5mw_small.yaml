@@ -6,7 +6,7 @@ verbose: false
 
 nalu_wind:
   # Input exodus database
-  input_mesh: nrel5mw_overset.exo
+  input_mesh: ../../meshes/nrel5mw_overset.exo
 
   # Name of the output exodus database (if desired)
   output_mesh: overset/nrel5mw_overset.e

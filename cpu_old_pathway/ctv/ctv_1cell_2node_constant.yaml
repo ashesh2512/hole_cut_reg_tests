@@ -1,4 +1,4 @@
-write_outputs: true
+write_outputs: false
 output_frequency: 1
 dump_timers: false
 dump_tioga_partitions: false
@@ -6,7 +6,7 @@ verbose: false
 
 nalu_wind:
   # Input exodus database
-  input_mesh: ctv_rotated.exo
+  input_mesh: ../../meshes/ctv_rotated.exo
 
   # Name of the output exodus database (if desired)
   output_mesh: overset/ctv_rotated.e
@@ -16,7 +16,6 @@ nalu_wind:
 
   # Overset mesh information
   overset_info:
-    use_ngp_interface: true
     mesh_group:
       - overset_name: interior
         mesh_parts:
@@ -35,11 +34,11 @@ amr_wind:
     is_periodic: [1, 1, 0]
 
   field:
-    amr_sol: 0
-    stk_sol: 1
+    amr_sol: 1
+    stk_sol: 0
     num_ghost: 2
-    num_cell_vars: 2
-    num_node_vars: 1
+    num_cell_vars: 1
+    num_node_vars: 2
 
 amrex:
   verbose: 0

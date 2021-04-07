@@ -5,7 +5,7 @@ verbose: false
 
 nalu_wind:
   # Input exodus database
-  input_mesh: sphere.exo
+  input_mesh: ../../meshes/sphere.exo
 
   # Name of the output exodus database (if desired)
   output_mesh: overset/sphere.e
