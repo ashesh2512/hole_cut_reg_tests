@@ -2,7 +2,7 @@
 echo ""
 echo "RUNNING CTV test with 2 CELL VAR AND 1 NODE VAR ON 1 CORE."
 echo ""
-cd /scratch/asharma/amr_reg_test/gpu/ctv
+cd /scratch/asharma/hole_cut_reg_tests/gpu/ctv
 rm -rf core* plt*
 srun -n 1 -c 1 --cpu_bind=cores --gres=gpu:1 ~/exawind/source/tioga_utils/build_cuda_opt/exatioga --kokkos-num-devices=1 -i ctv_2cell_1node_constant.yaml
 
@@ -14,7 +14,7 @@ srun -n 1 -c 1 --cpu_bind=cores --gres=gpu:1 ~/exawind/source/tioga_utils/build_
 echo ""
 echo "RUNNING SINGLE SPHERE TEST ON 1 CORE."
 echo ""
-cd /scratch/asharma/amr_reg_test/gpu/sphere_w_amr
+cd /scratch/asharma/hole_cut_reg_tests/gpu/sphere_w_amr
 rm -rf core* plt*
 srun -n 1 -c 1 --cpu_bind=cores --gres=gpu:1 ~/exawind/source/tioga_utils/build_cuda_opt/exatioga --kokkos-num-devices=1 -i sphere.yaml
 
@@ -36,6 +36,6 @@ srun -n 11 -c 1 --cpu_bind=cores --gres=gpu:2 ~/exawind/source/tioga_utils/build
 echo ""
 echo "RUNNING NREL 5MW TEST WITH SMALL ABL MESH ON 9 CORES."
 echo ""
-cd /scratch/asharma/amr_reg_test/gpu/nrel_5mw
+cd /scratch/asharma/hole_cut_reg_tests/gpu/nrel_5mw
 rm -rf core* plt*
 srun -n 9 -c 1 --cpu_bind=cores --gres=gpu:2 ~/exawind/source/tioga_utils/build_cuda_opt/exatioga --kokkos-num-devices=2 -i nrel5mw_small.yaml
