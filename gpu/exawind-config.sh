@@ -23,6 +23,3 @@ ENABLE_TIOGA=ON       # Enable TIOGA for overset connectivity
 ENABLE_HYPRE=ON        # Enable HYPRE linear solvers with Nalu-Wind
 ENABLE_FFTW=OFF        # Enable FFTW for ABL simulations
 
-TRILINOS_ROOT_DIR=/projects/hfm/shreyas/exawind/install/gcc/trilinos
-export EXAWIND_INSTALL_DIR=/home/asharma/exawind/install/cuda
-TIOGA_ROOT_DIR=${EXAWIND_INSTALL_DIR}/tioga
