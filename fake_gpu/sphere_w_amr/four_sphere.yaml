@@ -1,0 +1,82 @@
+write_outputs: true
+output_frequency: 2
+dump_timers: false
+dump_tioga_partitions: false
+verbose: false
+
+nalu_wind:
+  # Input exodus database
+  input_mesh: ../../meshes/four_sphere.exo
+
+  # Name of the output exodus database (if desired)
+  output_mesh: overset/sphere.e
+
+  # STK mesh decomposition type for parallel runs
+  decomposition_method: rcb
+
+  # Overset mesh information
+  overset_info:
+    use_ngp_interface: true
+    mesh_group:
+      - overset_name: interior1
+        mesh_parts: [ sphere1-HEX ]
+        wall_parts: [ wall1 ]
+        ovset_parts: [ overset1 ]
+      - overset_name: interior2
+        mesh_parts: [ sphere2-HEX ]
+        wall_parts: [ wall2 ]
+        ovset_parts: [ overset2 ]
+      - overset_name: interior3
+        mesh_parts: [ sphere3-HEX ]
+        wall_parts: [ wall3 ]
+        ovset_parts: [ overset3 ]
+      - overset_name: interior4
+        mesh_parts: [ sphere4-HEX ]
+        wall_parts: [ wall4 ]
+        ovset_parts: [ overset4 ]
+
+  # Mesh motion
+  motion_info:
+    start_time: 0.0
+    num_time_steps: 0
+    delta_t: 0.0625
+
+    motion_group:
+      - type: rotation
+        mesh_parts: [ sphere1-HEX, sphere2-HEX, sphere3-HEX, sphere4-HEX ]
+        wall_parts: [ wall1, wall2, wall3, wall4 ]
+        omega: 6.28318530717959
+        axis: [0.0, 1.0, 0.0]
+        origin: [0.0, 0.0, 0.0]
+
+amr_wind:
+  amr:
+    n_cell: [64, 64, 64]
+    max_grid_size: 64
+    max_level: 2
+    v: 0
+
+  geometry:
+    prob_lo: [-3, -1.5, -3]
+    prob_hi: [3, 1.5, 3]
+    is_periodic: [1, 1, 1]
+
+  field:
+    num_ghost: 2
+    num_cell_vars: 2
+    num_node_vars: 2
+
+  refinement:
+    - type: static
+      num_levels: 2
+      level_0:
+        - lo: [-2.4, -1.2, -2.4]
+          hi: [2.4, 1.2, 2.4]
+      level_1:
+        - lo: [-1.6, -0.6, -1.6]
+          hi: [1.6, 0.6, 1.6]
+
+amrex:
+  verbose: 0
+  signal_handling: 0
+  throw_exception: 1
